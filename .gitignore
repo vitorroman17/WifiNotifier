@@ -1,0 +1,23 @@
+# Diretórios de build
+.gradle/
+build/
+**/build/
+
+# Arquivos locais de configuração
+local.properties
+.idea/
+*.iml
+
+# Arquivos de cache
+.cxx/
+*.log
+
+# Output de lint
+lint/reports/
+lint/intermediates/
+
+# Outros
+*.keystore
+*.jks
+captures/
+.externalNativeBuild/
