@@ -41,7 +41,6 @@ sdk.dir=C:\\Users\\vitor\\AppData\\Local\\Android\\Sdk
 MIT — veja o arquivo LICENSE para mais detalhes.
 
 
-## Configuração do SDK
 Crie um arquivo `local.properties` na raiz do projeto com o caminho do Android SDK:
 ```
 sdk.dir=C:\\Users\\SeuUsuario\\AppData\\Local\\Android\\Sdk

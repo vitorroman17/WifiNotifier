@@ -1,4 +1,4 @@
-        )
+package com.example.wifinotifier
 import android.Manifest
 import android.content.Intent
 import android.os.Build
@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
-package com.example.wifinotifier
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +35,14 @@ class MainActivity : AppCompatActivity() {
         val logTextView = findViewById<TextView>(R.id.logTextView)
         logTextView.text = LogRepository.getLogs().joinToString("\n")
 
-        val handler = Handler(Looper.getMainLooper())
-        val logUpdater = object : Runnable {
+        private lateinit var handler: Handler
+    private lateinit var logUpdater: Runnable
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        handler = Handler(Looper.getMainLooper()) = Handler(Looper.getMainLooper())
+        logUpdater = object : Runnable {
             override fun run() {
                 logTextView.text = LogRepository.getLogs().joinToString("\n")
                 handler.postDelayed(this, 1000)
