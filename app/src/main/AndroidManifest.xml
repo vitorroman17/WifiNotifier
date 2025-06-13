@@ -31,6 +31,5 @@
             android:name=".WifiMonitorService"
             android:enabled="true"
             android:exported="false" />
-        <receiver android:name=".WifiReceiver" android:exported="true" />
 </application>
 </manifest>

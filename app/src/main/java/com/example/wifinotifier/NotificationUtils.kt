@@ -13,38 +13,32 @@ object NotificationUtils {
     private const val CHANNEL_NAME = "WiFi Monitor Service"
 
     fun createForegroundNotification(context: Context): Notification {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_LOW
-            ).apply {
-                description = "Canal usado pelo serviço de monitoramento de Wi-Fi"
-            }
-
-            val manager = context.getSystemService(NotificationManager::class.java)
-            manager?.createNotificationChannel(channel)
-        }
-
+        createChannel(context)
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentTitle("Wi-Fi Monitorando")
             .setContentText("O app está monitorando conexões Wi-Fi.")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(true)
             .build()
     }
 
     fun showNotification(context: Context, title: String, text: String) {
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
+        createChannel(context)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentTitle(title)
             .setContentText(text)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
-
+        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(System.currentTimeMillis().toInt(), notification)
+    }
+
+    private fun createChannel(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val manager = context.getSystemService(NotificationManager::class.java)
+            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
+            manager.createNotificationChannel(channel)
+        }
     }
 }
