@@ -1,49 +1,33 @@
 package com.example.wifinotifier
 
+import android.Manifest
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var logTextView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val permissions = mutableListOf(
-            android.Manifest.permission.ACCESS_FINE_LOCATION
-        )
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            permissions.add(android.Manifest.permission.NEARBY_WIFI_DEVICES)
-        }
-        val toRequest = permissions.filter {
-            androidx.core.content.ContextCompat.checkSelfPermission(this, it) != android.content.pm.PackageManager.PERMISSION_GRANTED
-        }
-        if (toRequest.isNotEmpty()) {
-            androidx.core.app.ActivityCompat.requestPermissions(this, toRequest.toTypedArray(), 1)
-        }
-
-        val intent = android.content.Intent(this, WifiMonitorService::class.java)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            startForegroundService(intent)
-        } else {
-            startService(intent)
-        }
         setContentView(R.layout.activity_main)
 
-        logTextView = findViewById(R.id.logTextView)
+        val permissions = mutableListOf(
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
 
-        updateLogDisplay()
-    }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissions.add(Manifest.permission.NEARBY_WIFI_DEVICES)
+            permissions.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
 
-    private fun updateLogDisplay() {
-        val logs = LogRepository.getLogs().joinToString("\n")
-        logTextView.text = logs
-    }
+        ActivityCompat.requestPermissions(this, permissions.toTypedArray(), 0)
 
-    override fun onResume() {
-        super.onResume()
-        updateLogDisplay()
+        val intent = Intent(this, WifiMonitorService::class.java)
+        startForegroundService(intent)
+
+        val logTextView = findViewById<TextView>(R.id.logTextView)
+        logTextView.text = LogRepository.getLogs().joinToString("\n")
     }
 }

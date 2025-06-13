@@ -13,10 +13,9 @@ class ExampleUnitTest {
     @Test
     fun testAddLog() {
         LogRepository.clear()
-    val testMessage = "Teste de log"
-    LogRepository.addLog(testMessage)
-    val logs = LogRepository.getLogs()
-    val containsMessage = logs.any { it.contains(testMessage) }
-    assertTrue("Deve conter o log adicionado", containsMessage)
+        val testMessage = "Teste de log"
+        LogRepository.addLog(testMessage)
+        val logs = LogRepository.getLogs()
+        assertTrue("Deve conter o log com timestamp", logs.any { it.contains(testMessage) })
     }
 }
