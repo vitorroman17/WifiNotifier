@@ -1,23 +1,22 @@
-# Diretórios de build
-.gradle/
-build/
-**/build/
-
-# Arquivos locais de configuração
-local.properties
+# IDE
 .idea/
 *.iml
 
-# Arquivos de cache
-.cxx/
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Gradle
+.gradle/
+build/
+**/build/
+local.properties
+
+# Arquivos temporários
 *.log
+*.tmp
 
-# Output de lint
-lint/reports/
-lint/intermediates/
-
-# Outros
-*.keystore
-*.jks
+# Android
 captures/
 .externalNativeBuild/
+.cxx/
