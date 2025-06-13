@@ -7,16 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/ignoreSubstringEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_ignore_substring"
-            android:text="@string/default_substring"
-            android:padding="16dp"
-            android:inputType="text"
-            android:autofillHints="username" />
-
+        
         <TextView
             android:id="@+id/logTextView"
             android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.os.IBinder
 class WifiMonitorService : Service() {
 
     override fun onCreate() {
+        val wifiReceiver = WifiReceiver()
         super.onCreate()
 
         val notification = NotificationUtils.createForegroundNotification(this)
@@ -23,3 +24,9 @@ class WifiMonitorService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? = null
 }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(wifiReceiver)
+    }
