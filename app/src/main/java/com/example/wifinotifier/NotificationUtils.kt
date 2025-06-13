@@ -31,7 +31,7 @@ object NotificationUtils {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.notify(System.currentTimeMillis().toInt(), notification)
+        manager.notify(System.currentTimeMillis().hashCode(), notification)
     }
 
     private fun createChannel(context: Context) {
