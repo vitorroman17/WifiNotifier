@@ -2,31 +2,26 @@ package com.example.wifinotifier
 
 import android.app.Service
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.IBinder
 
 class WifiMonitorService : Service() {
 
-    override fun onCreate() {
-        val wifiReceiver = WifiReceiver()
-        super.onCreate()
+    private val wifiReceiver = WifiReceiver()
 
+    override fun onCreate() {
+        super.onCreate()
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(wifiReceiver, filter)
         val notification = NotificationUtils.createForegroundNotification(this)
         startForeground(1, notification)
-
-                val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        registerReceiver(WifiReceiver(), filter)
     }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // código já existente
-        return START_STICKY
-    }
-
-    override fun onBind(intent: Intent?): IBinder? = null
-}
-
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(wifiReceiver)
     }
+
+    override fun onBind(intent: Intent?): IBinder? = null
+}
