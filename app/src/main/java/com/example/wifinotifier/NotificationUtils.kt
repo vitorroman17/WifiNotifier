@@ -22,17 +22,17 @@ object NotificationUtils {
             .build()
     }
 
-    fun showNotification(context: Context, title: String, text: String) {
-        createChannel(context)
-        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setContentTitle(title)
-            .setContentText(text)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .build()
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val notificationId = 1 // usar ID fixo
-        manager.notify(notificationId, notification)
+   fun showNotification(context: Context, title: String, text: String) {
+    createChannel(context)
+    val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+        .setContentTitle(title)
+        .setContentText(text)
+        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .build()
+    val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val notificationId = 1 // usar ID fixo
+    manager.notify(notificationId, notification)
 
     }
 
