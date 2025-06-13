@@ -21,7 +21,6 @@ Via ADB:
 ```
 adb shell pm grant com.example.wifinotifier android.permission.POST_NOTIFICATIONS
 adb shell pm grant com.example.wifinotifier android.permission.ACCESS_FINE_LOCATION
-adb shell pm grant com.example.wifinotifier android.permission.ACCESS_COARSE_LOCATION
 adb shell pm grant com.example.wifinotifier android.permission.ACCESS_WIFI_STATE
 adb shell pm grant com.example.wifinotifier android.permission.ACCESS_NETWORK_STATE
 adb shell pm grant com.example.wifinotifier android.permission.RECEIVE_BOOT_COMPLETED

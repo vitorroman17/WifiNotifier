@@ -12,7 +12,8 @@ class WifiMonitorService : Service() {
         val notification = NotificationUtils.createForegroundNotification(this)
         startForeground(1, notification)
 
-        // Inicie o monitoramento do Wi-Fi aqui
+                val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(WifiReceiver(), filter)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
