@@ -1,3 +1,5 @@
+import android.os.Handler
+import android.os.Looper
 package com.example.wifinotifier
 
 import android.Manifest
@@ -24,10 +26,24 @@ class MainActivity : AppCompatActivity() {
 
         ActivityCompat.requestPermissions(this, permissions.toTypedArray(), 0)
 
-        val intent = Intent(this, WifiMonitorService::class.java)
-        startForegroundService(intent)
+        val serviceIntent = Intent(this, WifiMonitorService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent)
+        } else {
+            startService(serviceIntent)
+        }
 
         val logTextView = findViewById<TextView>(R.id.logTextView)
         logTextView.text = LogRepository.getLogs().joinToString("\n")
+
+        val handler = Handler(Looper.getMainLooper())
+        val logUpdater = object : Runnable {
+            override fun run() {
+                logTextView.text = LogRepository.getLogs().joinToString("\n")
+                handler.postDelayed(this, 1000)
+            }
+        }
+        handler.post(logUpdater)
+    
     }
 }

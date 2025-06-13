@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">WifiNotifier</string>
-    <string name="hint_ignore_substring">Substring para ignorar SSID</string>
     <string name="default_substring">via</string>
     <string name="log_placeholder">Nenhum log ainda.</string>
-    <string name="ellipsis">…</string>
 </resources>
