@@ -1,0 +1,2 @@
+rootProject.name = "WifiNotifier"
+include ':app'
