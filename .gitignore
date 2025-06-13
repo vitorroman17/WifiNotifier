@@ -20,3 +20,8 @@ local.properties
 captures/
 .externalNativeBuild/
 .cxx/
+
+# Relatórios e arquivos de inspeção
+index.html
+script.js
+styles.css
