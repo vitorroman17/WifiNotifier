@@ -13,8 +13,10 @@ class ExampleUnitTest {
     @Test
     fun testAddLog() {
         LogRepository.clear()
-        LogRepository.addLog("Teste de log")
-        val logs = LogRepository.getLogs()
-        assertTrue("Deve conter o log adicionado", logs.contains("Teste de log"))
+    val testMessage = "Teste de log"
+    LogRepository.addLog(testMessage)
+    val logs = LogRepository.getLogs()
+    val containsMessage = logs.any { it.contains(testMessage) }
+    assertTrue("Deve conter o log adicionado", containsMessage)
     }
 }

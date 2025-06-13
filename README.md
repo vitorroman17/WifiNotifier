@@ -33,3 +33,8 @@ Pull requests são bem-vindos. Para mudanças maiores, abra uma issue antes para
 ## Licença
 
 MIT — veja o arquivo LICENSE para mais detalhes.
+
+### Configuração do Android SDK
+
+Crie um arquivo `local.properties` na raiz do projeto com o conteúdo:
+
