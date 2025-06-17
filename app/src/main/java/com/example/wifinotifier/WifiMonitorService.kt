@@ -17,14 +17,12 @@ class WifiMonitorService : Service() {
     override fun onCreate() {
         super.onCreate()
 
-        // Obter o ConnectivityManager
-        connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        // Criar notificação de foreground
+        // startForeground precisa ser chamado imediatamente
         val notification = NotificationUtils.createForegroundNotification(this)
         startForeground(1, notification)
 
-        // Criar e registrar NetworkCallback para monitorar Wi-Fi
+        connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
         val request = NetworkRequest.Builder()
             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             .build()
@@ -46,12 +44,10 @@ class WifiMonitorService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Cancelar o registro do NetworkCallback para evitar vazamentos
         connectivityManager.unregisterNetworkCallback(networkCallback)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // Garante que o serviço continue em segundo plano se o sistema o matar
         return START_STICKY
     }
 
