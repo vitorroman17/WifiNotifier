@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">WifiNotifier</string>
-    <string name="default_substring">via</string>
     <string name="log_placeholder">Nenhum log ainda.</string>
 </resources>
