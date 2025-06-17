@@ -1,33 +1,39 @@
 package com.example.wifinotifier
 
 
-  Repositório de logs em memória.
- Armazena até 1000 entradas com timestamp.
+// Repositório de logs em memória.
+// Armazena até 1000 entradas com timestamp.
  
 object LogRepository {
     private val logList = mutableListOf<String>()
 
     
-      Adiciona uma nova entrada de log com timestamp.
+// Adiciona uma nova entrada de log com timestamp.
      
     fun addLog(message: String) {
         val timestamp = System.currentTimeMillis()
-        logList.add("$timestamp: $message")
-        if (logList.size > 1000) {
-            logList.removeAt(0) // remove o log mais antigo
-        }
-    }
+// logList.add("$timestamp: $message")
+// if (logList.size > 1000) {
+// logList.removeAt(0) // remove o log mais antigo
+// }
+// }
 
     
-      Retorna todos os logs atuais.
+// Retorna todos os logs atuais.
      
     fun getLogs(): List<String> = logList.toList()
 
     
-      Limpa todos os logs.
+// Limpa todos os logs.
      
     // @Suppress("unused")
     fun clear() {
+<<<<<<< HEAD
         logList.clear()
     }
 }
+=======
+// logList.clear()
+// }
+// }
+>>>>>>> 33f19ae (Versão final corrigida do WifiNotifier)
