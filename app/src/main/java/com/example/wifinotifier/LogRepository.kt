@@ -26,7 +26,8 @@ object LogRepository {
     
       Limpa todos os logs.
      
-    // fun clear() {
+    // @Suppress("unused")
+    fun clear() {
         logList.clear()
     }
 }
