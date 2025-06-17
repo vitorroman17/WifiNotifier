@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         private lateinit var handler: Handler
     private lateinit var logUpdater: Runnable
 
-    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         handler = Handler(Looper.getMainLooper()) = Handler(Looper.getMainLooper())
